@@ -1,2 +1,2 @@
-# git-bash-productivity
-Git bash scripts for productivity
+# bash-productivity
+Bash scripts for productivity
