@@ -1,0 +1,14 @@
+alias push='git push origin $(git rev-parse --abbrev-ref HEAD)'
+alias pull='git pull --recurse-submodules origin $(git rev-parse --abbrev-ref HEAD)'
+alias s="git status -s"
+alias c="git commit -m "
+alias a='git add . && git status -s'
+alias l='git log --oneline --all --graph --decorate'
+alias gb='git fetch && git checkout '
+alias undo='git checkout --'
+alias reset='git reset --hard HEAD~1'
+alias clean='git clean -dnx'
+alias branch='git checkout -b'
+alias friday='pull && git commit -a -m "[WIP] Lastest changes from Friday" && push'
+alias changes='git diff --'
+alias nomerge='git merge --abort'
