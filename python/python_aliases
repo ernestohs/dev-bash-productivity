@@ -1,0 +1,35 @@
+# Run Python 3
+alias py='python3'
+
+# Create and activate a virtual environment
+alias venv='python3 -m venv venv && source venv/bin/activate'
+
+# Activate an existing virtual environment
+alias activate='source venv/bin/activate'
+
+# Install requirements
+alias pipr='pip install -r requirements.txt'
+
+# Run tests
+alias pytest='python -m unittest discover tests'
+
+# Run Python script with debugger
+alias pydebug='python -m pdb'
+
+# Format code with Black
+alias black='black .'
+
+# Run pylint
+alias pylint='pylint **/*.py'
+
+# Start Jupyter notebook
+alias jn='jupyter notebook'
+
+# Run pip list in a column format
+alias piplist='pip list --format=columns'
+
+# Upgrade all outdated packages
+alias pipupgrade='pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U'
+
+# Create a new Python script with shebang
+alias pyscript='echo "#!/usr/bin/env python3" > script.py && chmod +x script.py && $EDITOR script.py'
