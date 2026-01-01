@@ -9,11 +9,11 @@ fi
 PORT=$1
 
 # Find the process using the specified port
-PROCESS=$(lsof -i :$PORT | awk 'NR==2 {print $2, $1}')
+PIDS=$(lsof -t -i :$PORT)
 
-if [ -z "$PROCESS" ]; then
+if [ -z "$PIDS" ]; then
   echo "No process is using port $PORT."
 else
-  kill -9 -pid $PROCESS
-  echo "Process using port $PORT: $PROCESS"
+  kill -9 $PIDS
+  echo "Killed process(es) using port $PORT: $PIDS"
 fi
