@@ -1,0 +1,33 @@
+#!/bin/bash
+
+VERBOSE=true
+for arg in "$@"; do
+    if [[ "$arg" == "--no-verbose" ]]; then
+        VERBOSE=false
+    fi
+done
+
+if [ ! -d .git ]; then
+    echo "Error: .git directory not found. Please run this script from the root of a git repository." >&2
+    exit 1
+fi
+
+if [ ! -f .cursor/BUGBOT.md ]; then
+    echo "Error: .cursor/BUGBOT.md file not found. Please ensure project-specific guidelines exist." >&2
+    exit 1
+fi
+
+REPORT_FILE=$(mktemp /tmp/cursor-review-XXXXXX.md)
+
+agent --trust -p "Review the recent code changes and provide feedback on:
+  - Code quality and readability
+  - Potential bugs or issues
+  - Security considerations
+  - Best practices compliance
+  Reference .cursor/BUGBOT.md for project-specific guidelines." > "$REPORT_FILE"
+
+if [ "$VERBOSE" = true ]; then
+    cat "$REPORT_FILE"
+fi
+
+echo "Report path: $REPORT_FILE"
